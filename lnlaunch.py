@@ -2,6 +2,7 @@ import tkinter as tk
 import subprocess
 import threading
 import webbrowser
+import os
 
 # Create the main window
 window = tk.Tk()
@@ -19,8 +20,9 @@ def server_make():
             status_label.config(text="Creating server...", fg="blue")
             window.update_idletasks()
 
-            # Create Dockerfile
-            with open("ubuntu.dockerfile", "w") as file:
+            # Ensure the Dockerfile is created in the current working directory
+            dockerfile_path = "ubuntu.dockerfile"
+            with open(dockerfile_path, "w") as file:
                 file.write("""\
 # This is a Dockerfile for Ubuntu
 FROM ubuntu:latest
@@ -29,6 +31,11 @@ RUN apt-get install -y nginx
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 """)
+
+            # Verify the Dockerfile exists before proceeding
+            if not os.path.exists(dockerfile_path):
+                status_label.config(text="Dockerfile not found!", fg="red")
+                return
 
             # Build Docker image
             subprocess.run(["docker", "build", "-t", "new-server", "."], check=True)
@@ -86,3 +93,4 @@ output_label.pack(pady=10)
 
 # Start the Tkinter event loop
 window.mainloop()
+
