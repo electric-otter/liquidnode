@@ -20,8 +20,8 @@ def server_make():
             status_label.config(text="Creating server...", fg="blue")
             window.update_idletasks()
 
-            # Ensure the Dockerfile is created in the current working directory
-            dockerfile_path = "ubuntu.dockerfile"
+            # Ensure the Dockerfile is created with the correct name in the current working directory
+            dockerfile_path = "Dockerfile"
             with open(dockerfile_path, "w") as file:
                 file.write("""\
 # This is a Dockerfile for Ubuntu
