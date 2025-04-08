@@ -1,5 +1,5 @@
 name: liquidnode-vps             # The name of your Snap package
-version: '1.0.0'                  # Version of your project
+version: '2.0.0'                  # Version of your project
 summary: A powerful VPS solution for personal and project use
 description: |
   The Liquid Node VPS is a lightweight, high-performance virtual server
