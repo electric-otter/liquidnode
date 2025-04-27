@@ -6,7 +6,7 @@ import os
 
 # Create the main window
 window = tk.Tk()
-window.title("LiquidNode")
+window.title("Liquid Node 2")
 window.geometry("500x400")
 
 # Label for status updates
@@ -24,8 +24,8 @@ def server_make():
             dockerfile_path = "Dockerfile"
             with open(dockerfile_path, "w") as file:
                 file.write("""\
-# This is a Dockerfile for Ubuntu
-FROM ubuntu:latest
+# This is a Dockerfile for Debian
+FROM debian:bullseye
 RUN apt-get update
 RUN apt-get install -y nginx
 EXPOSE 80
